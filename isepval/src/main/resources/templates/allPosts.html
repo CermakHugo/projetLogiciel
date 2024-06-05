@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All posts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/post.css"/>
+</head>
+<body>
+
+<header th:insert="~{common/navbar :: navbar}"></header>
+
+<div th:insert="~{common/posts :: post-list}"></div>
+
+<div th:if="${totalPages > 1}">
+    <ul class="pagination">
+        <li class="page-item" th:class="${currentPage == 0 ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{/post/all(page=0)}">First</a>
+        </li>
+        <li class="page-item" th:class="${currentPage == 0 ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{/post/all(page=${currentPage - 1})}">Previous</a>
+        </li>
+        <li class="page-item" th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}">
+            <a class="page-link" th:href="@{/post/all(page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+        </li>
+        <li class="page-item" th:class="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{/post/all(page=${currentPage + 1})}">Next</a>
+        </li>
+        <li class="page-item" th:class="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{/post/all(page=${totalPages - 1})}">Last</a>
+        </li>
+    </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="/js/post.js"></script>
+</body>
+</html>
