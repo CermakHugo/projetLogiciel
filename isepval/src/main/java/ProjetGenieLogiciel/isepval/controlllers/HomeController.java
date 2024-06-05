@@ -3,6 +3,7 @@ package ProjetGenieLogiciel.isepval.controlllers;
 import ProjetGenieLogiciel.isepval.models.User;
 import ProjetGenieLogiciel.isepval.services.UserService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ public class HomeController {
     }
 
     @PostMapping("/login")
-    public String loginSubmit(  User user, HttpSession session, Model model) {
+    public String loginSubmit(User user, HttpSession session, Model model) {
         User authenticatedUser = userService.authenticate(user.getUsername(), user.getPassword());
 
         if (authenticatedUser != null) {
@@ -60,8 +61,7 @@ public class HomeController {
         if (isUsernameUnique && isEmailUnique) {
             userService.saveNewUser(user);
             return "redirect:/login";
-        }
-        else {
+        } else {
             return "signup";
         }
     }
