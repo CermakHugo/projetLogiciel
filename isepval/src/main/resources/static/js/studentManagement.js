@@ -18,6 +18,38 @@ function loadGroupList() {
     });
 }
 
+function findGroup() {
+    var data = $("#findGroupForm").serialize();
+    closeModal();
+    $.ajax({
+        url: '/admin/studentManagement/findGroup',
+        method: 'POST',
+        success: function(data) {
+            $('#groupList').html(data);
+            $('#studentSkill').html("");
+        },
+        error: function() {
+            alert('Error loading the form');
+        }
+    });
+}
+
+function findStudent() {
+    var data = $("#findStudentForm").serialize();
+    closeModal();
+    $.ajax({
+        url: '/admin/studentManagement/findStudent',
+        method: 'POST',
+        success: function(data) {
+            $('#studentList').html(data);
+            $('#studentSkill').html("");
+        },
+        error: function() {
+            alert('Error loading the form');
+        }
+    });
+}
+
 function addGroup() {
     var data = $("#createGroupForm").serialize();
     closeModal();

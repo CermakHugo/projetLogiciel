@@ -1,6 +1,5 @@
 package ProjetGenieLogiciel.isepval.repositories;
 
-import ProjetGenieLogiciel.isepval.models.Category;
 import ProjetGenieLogiciel.isepval.models.Group;
 import ProjetGenieLogiciel.isepval.models.User;
 import ProjetGenieLogiciel.isepval.models.enums.UserType;
@@ -20,5 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByLoginLike(String login);
     List<User> findByGroup(Group group);
     List<User> findByUserType(UserType userType);
+
+    List<User> findByUserTypeAndNameLike(UserType userType, String name);
 
 }

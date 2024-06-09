@@ -235,6 +235,22 @@ public class AdminController {
         return "admin/studentManagement/groupList";
     }
 
+    @PostMapping("/admin/studentManagement/findGroup")
+    public String loadAllGroup(@Valid Group group, HttpSession session, Model model) {
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        } else if (currentUser.getUserType() != UserType.ADMIN) {
+            return "401";
+        }
+
+        List<Group> allGroup = groupService.findByNameLike(group.getName());
+        model.addAttribute("groupList", allGroup);
+        model.addAttribute("newGroup", new Group());
+
+        return "admin/studentManagement/groupList";
+    }
+
     @PostMapping("/admin/studentManagement/createGroup")
     public String adminCreateGroup(@Valid Group newGroup, Model model, HttpSession session) {
         User currentUser = (User) session.getAttribute("user");
@@ -270,6 +286,24 @@ public class AdminController {
         }
 
         List<User> allStudent = userService.findByUserType(UserType.STUDENT);
+        List<Group> allGroup = groupService.findAll();
+        model.addAttribute("allGroup", allGroup);
+        model.addAttribute("studentList", allStudent);
+        model.addAttribute("newStudent", new User());
+
+        return "admin/studentManagement/studentList";
+    }
+
+    @GetMapping("/admin/studentManagement/findStudent")
+    public String loadAllStudent(@Valid User student, HttpSession session, Model model) {
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        } else if (currentUser.getUserType() != UserType.ADMIN) {
+            return "401";
+        }
+
+        List<User> allStudent = userService.findByUserTypeAndNameLike(UserType.STUDENT, student.getName());
         List<Group> allGroup = groupService.findAll();
         model.addAttribute("allGroup", allGroup);
         model.addAttribute("studentList", allStudent);

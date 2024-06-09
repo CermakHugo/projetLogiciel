@@ -93,4 +93,6 @@ public class UserService {
         }
         return allStudentSkillFromSubCategory;
     }
+
+    public List<User> findByUserTypeAndNameLike(UserType userType, String name){return userRepository.findByUserTypeAndNameLike(userType,name);}
 }
