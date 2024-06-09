@@ -40,7 +40,7 @@ public class HomeController {
             } else if (authenticatedUser.getUserType() == UserType.TEACHER) {
                 return "redirect:/teacher";
             } else {
-                return "redirect:/index";
+                return "redirect:/student";
             }
 
         } else {
