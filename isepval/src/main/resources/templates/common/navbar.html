@@ -18,10 +18,10 @@
                         <a class="nav-link" th:href="@{/admin/skillManagement}">Liste Des Compétences</a>
                     </li>
                     <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Admin'}">
-                        <a class="nav-link" th:href="@{/admin/studentList}">Liste Des Elèves</a>
+                        <a class="nav-link" th:href="@{/admin/studentManagement}">Liste Des Elèves</a>
                     </li>
                     <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Admin'}">
-                        <a class="nav-link" th:href="@{/admin/teacherList}">Liste Des Professeur</a>
+                        <a class="nav-link" th:href="@{/admin/teacherManagement}">Liste Des Professeur</a>
                     </li>
                     <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Admin'}">
                         <a class="nav-link" th:href="@{/admin/message}">Message</a>

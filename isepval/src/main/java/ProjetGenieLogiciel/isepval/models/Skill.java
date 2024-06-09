@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "skill")
 public class Skill implements Serializable {
@@ -21,7 +23,8 @@ public class Skill implements Serializable {
     @JsonIgnore
     private SubCategory subCategory;
 
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "skill", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SkillEvaluated> skillEvaluateds = new ArrayList<>();
 
     public Long getId() {
         return id;

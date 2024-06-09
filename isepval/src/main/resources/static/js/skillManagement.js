@@ -105,7 +105,6 @@ function addSkill(subCategoryId) {
 
 function addSubCategory() {
     var data = $("#createSubCategoryForm").serialize();
-    console.log(data)
     closeModal();
     $.ajax({
        url: '/admin/skillManagement/createSubCategory',

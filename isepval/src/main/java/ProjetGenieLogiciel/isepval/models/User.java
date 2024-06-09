@@ -1,9 +1,12 @@
 package ProjetGenieLogiciel.isepval.models;
 
 import ProjetGenieLogiciel.isepval.models.enums.UserType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "user")
 public class User implements Serializable {
@@ -27,6 +30,13 @@ public class User implements Serializable {
     @Column(nullable = false)
     private UserType userType = UserType.STUDENT;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "group_id")
+    @JsonIgnore
+    private Group group;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SkillEvaluated> skillEvaluateds = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -73,5 +83,13 @@ public class User implements Serializable {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

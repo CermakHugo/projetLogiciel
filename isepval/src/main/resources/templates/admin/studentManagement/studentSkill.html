@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block  th:each="category : ${categoryList}">
+        <div class="col-sm-12 text-danger" th:text="${category.getName()}"></div>
+        <th:block  th:each="subCategory : ${category.getSubCategories()}">
+            <div class="col-sm-12 text-info" th:text="${subCategory.getName()}" th:onclick="loadStudentSkillForSubCategory([[${subCategory.getId()}]])"></div>
+            <div class="conatainer col-12" th:id="${'studentSkillForSubCategory' + subCategory.getId()}"></div>
+        </th:block>
+</th:block>
+<input class="invisible" th:id="currentStudent" th:name="currentStudent" th:value="${currentStudent.getId()}">
+
+</body>
+</html>

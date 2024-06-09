@@ -1,6 +1,5 @@
 package ProjetGenieLogiciel.isepval.repositories;
 
-import ProjetGenieLogiciel.isepval.models.Category;
 import ProjetGenieLogiciel.isepval.models.Group;
 import ProjetGenieLogiciel.isepval.models.User;
 import ProjetGenieLogiciel.isepval.models.enums.UserType;
@@ -10,15 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Boolean existsByName(String name);
+public interface GroupRepository extends JpaRepository<Group, Long> {
 
-    Boolean existsByEmail(String email);
+    Group findById(long id);
 
-    User findById(long id);
+    List<Group> findByNameLike(String name);
+    List<Group> findAll();
 
-    User findByLoginLike(String login);
-    List<User> findByGroup(Group group);
-    List<User> findByUserType(UserType userType);
 
 }

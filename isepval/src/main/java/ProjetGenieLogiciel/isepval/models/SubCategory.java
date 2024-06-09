@@ -58,4 +58,12 @@ public class SubCategory implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
 }
