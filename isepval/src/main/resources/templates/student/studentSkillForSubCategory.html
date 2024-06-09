@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class="table table-striped col-12">
+    <thead>
+    <tr>
+        <th class="col-1">Skill Id:</th>
+        <th class="col-3">Skill :</th>
+        <th class="col-6">Description :</th>
+        <th class="col-2">Mark :</th>
+    </tr>
+    </thead>
+    <tbody >
+    <block th:each="skillEvaluated : ${allStudentSkill}">
+            <tr>
+                <td class="col-1"><input type="number" th:id="skill" th:name="skill" th:value="${skillEvaluated.getSkill().getId()}" readonly></td>
+                <td class="col-3" th:text="${skillEvaluated.getSkill().getName()}"></td>
+                <td class="col-6" th:text="${skillEvaluated.getSkill().getDescription()}"></td>
+                <td class="col-2" th:text="${skillEvaluated.getMark().getDisplayName()}"></td>
+            </tr>
+    </block>
+
+    </tbody>
+</table>
+</body>
+</html>

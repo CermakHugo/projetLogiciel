@@ -9,9 +9,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" th:if="${session.user == null}">
-                        <a class="nav-link" th:href="@{/signup}">Sign Up</a>
-                    </li>
-                    <li class="nav-item" th:if="${session.user == null}">
                         <a class="nav-link" th:href="@{/login}">Login</a>
                     </li>
                     <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Admin'}">
@@ -27,16 +24,13 @@
                         <a class="nav-link" th:href="@{/admin/message}">Message</a>
                     </li>
                     <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Teacher'}">
-                        <a class="nav-link" th:href="@{/teacher/studentList}">Liste Des Elèves</a>
-                    </li>
-                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Teacher'}">
-                        <a class="nav-link" th:href="@{/teacher/evaluate_skill}">Evaluer</a>
+                        <a class="nav-link" th:href="@{/teacher/studentManagement}">Liste Des Elèves</a>
                     </li>
                     <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Teacher'}">
                         <a class="nav-link" th:href="@{/teacher/message}">Message</a>
                     </li>
                     <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Student'}">
-                        <a class="nav-link" th:href="@{/student/my_skill}">Mes Compétence</a>
+                        <a class="nav-link" th:href="@{/student}">Mes Compétence</a>
                     </li>
                     <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Student'}">
                         <a class="nav-link" th:href="@{/student/message}">Message</a>

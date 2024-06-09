@@ -41,7 +41,7 @@ public class AdminController {
         } else if (currentUser.getUserType() != UserType.ADMIN) {
             return "401";
         }
-        return "admin/adminHome";
+        return "index";
     }
 
     @GetMapping("/admin/skillManagement")

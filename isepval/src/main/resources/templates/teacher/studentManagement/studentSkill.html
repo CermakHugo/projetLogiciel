@@ -6,7 +6,7 @@
 </head>
 <body>
 <th:block  th:each="category : ${categoryList}">
-    <div class="col-sm-12 text-danger bg-white my-2">
+    <div class="col-sm-12 text-danger bg-white my-2" >
         <div class="col-sm-12 text-danger bg-white" th:text="${category.getName()}"></div>
         <th:block  th:each="subCategory : ${category.getSubCategories()}">
             <div class="col-sm-12 text-info" th:text="${subCategory.getName()}" th:onclick="loadStudentSkillForSubCategory([[${subCategory.getId()}]])"></div>

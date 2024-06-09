@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid row mx-auto d-flex flex-column justify-content-center">
+    <form action="#" id="findGroupForm" th:object="${newGroup}">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Group Name...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" id="findStudentButton" th:onclick="findGroup()" type="button">OK</button>
+                <button class="btn btn-danger" th:onclick="loadGroupList()" type="button">Cancel</button>
+            </div>
+        </div>
+    </form>
+    <th:block  th:each="group : ${groupList}">
+        <div th:unless="${group.getId() == 1}" class="media border my-2 p-3 bg-white col-sm-12">
+            <div class="media my-2" th:onclick="loadGroupStudentList([[${group.getId()}]])">
+                <div class="media-body">
+                    <h4 th:text="${group.getName()}"></h4>
+                </div>
+            </div>
+        </div>
+    </th:block>
+
+</div>
+
+</body>
+</html>

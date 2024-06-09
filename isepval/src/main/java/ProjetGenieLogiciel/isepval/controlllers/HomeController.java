@@ -38,7 +38,7 @@ public class HomeController {
             if(authenticatedUser.getUserType() == UserType.ADMIN){
                 return "redirect:/admin" ;
             } else if (authenticatedUser.getUserType() == UserType.TEACHER) {
-                return "redirect:/index";
+                return "redirect:/teacher";
             } else {
                 return "redirect:/index";
             }

@@ -4,6 +4,16 @@ header {
     z-index: 1000;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #0c5cef, #ca30ff, #0c5cef, #ffcc00);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content to the bottom */
+}
+
 footer {
     background-color: #f8f9fa;
     margin-top: auto;
