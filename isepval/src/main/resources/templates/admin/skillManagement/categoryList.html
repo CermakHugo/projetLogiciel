@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="button" class="btn btn-info col-sm-12" data-toggle="modal" data-target="#createCategoryModal" id="createCategoryModalButton"> Create Category </button>
+<div class="container-fluid row mx-auto d-flex flex-column justify-content-center">
+    <th:block  th:each="category : ${categoryList}">
+        <div class="media border my-2 p-3 bg-white col-sm-12">
+            <div class="media my-2" th:onclick="loadSubCategoryList([[${category.getId()}]])">
+                <div class="media-body">
+                    <h4 th:text="${category.getName()}"></h4>
+                    <h6> <small th:text="${category.getDescription()}"></small></h6>
+                </div>
+            </div>
+            <button class="close leave-group" th:onclick="deleteCategory([[${category.getId()}]])">&times;</button>
+        </div>
+    </th:block>
+
+</div>
+
+
+<div class="modal fade" id="createCategoryModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Create Group :</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form action="#" th:action="@{/admin/categoryManagement/create}" th:object="${newCategory}" id="createCategoryForm" method="POST">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <label for="name">
+                            Name :
+                            <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Group Name">
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label for="description">
+                            Description :
+                            <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Description">
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="createCategoryButton" class="btn btn-light btn-outline-success" th:onclick="addCategory()"> Submit! </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

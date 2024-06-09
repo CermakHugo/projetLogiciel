@@ -8,13 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Boolean existsByName(String name);
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-    Boolean existsByEmail(String email);
+    Category findById(long id);
 
-    User findById(long id);
-
-    User findByLoginLike(String login);
+    List<Category> findByNameLike(String name);
 
 }

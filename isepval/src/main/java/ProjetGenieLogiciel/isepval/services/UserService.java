@@ -22,12 +22,12 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User findByLogin(String login) {
+        return userRepository.findByLoginLike(login);
     }
 
-    public boolean isUsernameUnique(String username) {
-        return !userRepository.existsByUsername(username);
+    public boolean isLoginUnique(String login) {
+        return !userRepository.existsByName(login);
     }
 
     public boolean isEmailUnique(String email) {
@@ -39,21 +39,11 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User authenticate(String username, String password) {
-        User user = userRepository.findByUsername(username);
+    public User authenticate(String login, String password) {
+        User user = userRepository.findByLoginLike(login);
         if (passwordEncoder.matches(password, user.getPassword())) {
             return user;
         }
         return null;
-    }
-
-    public void saveProfileImage(User user, String image) {
-        user.setImage(image);
-        userRepository.save(user);
-    }
-
-    public void saveProfileBio(User user, String bio) {
-        user.setBio(bio);
-        userRepository.save(user);
     }
 }

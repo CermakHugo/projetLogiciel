@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+<header th:insert="~{common/navbar :: navbar}"></header>
+<div class="container-fluid row vh-100">
+    <div class="conatainer vh-100 col-3" id="categoryList" style="overflow-y: scroll;">
+
+    </div>
+    <div class="conatainer vh-100 col-3" id="subCategoryList" style="overflow-y: scroll;"></div>
+    <div class="conatainer vh-100 col-6" id="skillList" style="overflow-y: scroll;"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/webjars/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+<script src="/js/skillManagement.js"></script>
+
+<footer th:insert="~{common/footer :: footer}"></footer>
+</body>
+</html>

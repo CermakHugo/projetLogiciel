@@ -1,6 +1,7 @@
 package ProjetGenieLogiciel.isepval.controlllers;
 
 import ProjetGenieLogiciel.isepval.models.User;
+import ProjetGenieLogiciel.isepval.models.enums.UserType;
 import ProjetGenieLogiciel.isepval.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -30,15 +31,28 @@ public class HomeController {
 
     @PostMapping("/login")
     public String loginSubmit(User user, HttpSession session, Model model) {
-        User authenticatedUser = userService.authenticate(user.getUsername(), user.getPassword());
+        User authenticatedUser = userService.authenticate(user.getLogin(), user.getPassword());
 
         if (authenticatedUser != null) {
             session.setAttribute("user", authenticatedUser);
-            return "redirect:/dashboard";
+            if(authenticatedUser.getUserType() == UserType.ADMIN){
+                return "redirect:/admin" ;
+            } else if (authenticatedUser.getUserType() == UserType.TEACHER) {
+                return "redirect:/index";
+            } else {
+                return "redirect:/index";
+            }
+
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("user");
+        return "redirect:/";
     }
 
     @GetMapping("/signup")
@@ -49,7 +63,7 @@ public class HomeController {
 
     @PostMapping("/signup")
     public String signUp(@Valid User user, Model model) {
-        boolean isUsernameUnique = userService.isUsernameUnique(user.getUsername());
+        boolean isUsernameUnique = userService.isLoginUnique(user.getLogin());
         boolean isEmailUnique = userService.isEmailUnique(user.getEmail());
 
         if (!isUsernameUnique) {

@@ -1,30 +1,32 @@
 package ProjetGenieLogiciel.isepval.models;
 
+import ProjetGenieLogiciel.isepval.models.enums.UserType;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-@Entity
+@Entity(name = "user")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
-    public String username;
+    private String login;
 
     @Column(nullable = false)
-    public String name;
+    private String name;
 
     @Column(nullable = false, unique = true)
-    public String email;
+    private String email;
 
     @Column(nullable = false)
-    public String password;
+    private String password;
 
-    private String bio;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserType userType = UserType.STUDENT;
 
-    private String image;
 
     public Long getId() {
         return id;
@@ -34,12 +36,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getName() {
@@ -66,19 +67,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getBio() {
-        return bio;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

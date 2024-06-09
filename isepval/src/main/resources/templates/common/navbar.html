@@ -1,7 +1,7 @@
 <header th:fragment="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}"><img th:src="@{/images/logo.png}" class="mr-1" alt="Logo" style="height: 75px;">Connect'IN</a>
+            <a class="navbar-brand" th:href="@{/}"><img th:src="@{/images/logo.jpg}" class="mr-1" alt="Logo" style="height: 75px;">Isepval</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -14,8 +14,32 @@
                     <li class="nav-item" th:if="${session.user == null}">
                         <a class="nav-link" th:href="@{/login}">Login</a>
                     </li>
-                    <li class="nav-item" th:if="${session.user != null}">
-                        <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
+                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Admin'}">
+                        <a class="nav-link" th:href="@{/admin/skillManagement}">Liste Des Compétences</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Admin'}">
+                        <a class="nav-link" th:href="@{/admin/studentList}">Liste Des Elèves</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Admin'}">
+                        <a class="nav-link" th:href="@{/admin/teacherList}">Liste Des Professeur</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Admin'}">
+                        <a class="nav-link" th:href="@{/admin/message}">Message</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Teacher'}">
+                        <a class="nav-link" th:href="@{/teacher/studentList}">Liste Des Elèves</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Teacher'}">
+                        <a class="nav-link" th:href="@{/teacher/evaluate_skill}">Evaluer</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Teacher'}">
+                        <a class="nav-link" th:href="@{/teacher/message}">Message</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Student'}">
+                        <a class="nav-link" th:href="@{/student/my_skill}">Mes Compétence</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.user != null && session.user.userType.getDisplayName() == 'Student'}">
+                        <a class="nav-link" th:href="@{/student/message}">Message</a>
                     </li>
                     <li class="nav-item" th:if="${session.user != null}">
                         <a class="nav-link" th:href="@{/logout}">Logout</a>
